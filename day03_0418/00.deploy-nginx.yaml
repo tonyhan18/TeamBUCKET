@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: my-nginx-deploy 
+  namespace: default  # 생략가능
+spec: 
+  replicas: 3
+  # 어떤 포드를 3개 관리할 것인지 선택자가 필요하다
+  selector: 
+    matchLabels: 
+      zone: seoul
+  template: 
+  # pod 포드에 라벨 지정해야 함 
+    metadata: 
+      name: my-nginx-pod 
+      labels: 
+        zone: seoul
+    spec: 
+    # container 
+      containers: 
+      - name: my-nginx-ctn 
+        image: tonyhan18/testweb:blue 
+        ports: 
+        - containerPort: 80
