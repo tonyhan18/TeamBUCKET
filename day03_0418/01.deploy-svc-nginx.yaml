@@ -3,7 +3,7 @@ kind: Deployment
 metadata: 
   name: deploy-nginx 
 spec:
-  replicas: 2
+  replicas: 3
   selector: 
     matchLabels:
       app: my-nginx-pods-label 
@@ -18,3 +18,17 @@ spec:
         image: tonyhan18/testweb:green
         ports: 
         - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: nginx-nodeport 
+spec: 
+  ports: 
+  - name: nginx-port 
+    targetPort: 80 
+    port: 80
+    #nodePort: 31008
+  selector: 
+    app: my-nginx-pods-label
+  type: LoadBalancer
