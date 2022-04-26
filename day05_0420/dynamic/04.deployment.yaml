@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gildong-deployment
+  labels:
+    app: gildong-nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: gildong-pod
+  template:
+    metadata:
+      labels:
+        app: gildong-pod
+    spec:
+      containers:
+      - name: gildong-nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+          - mountPath: /gildongvol
+            name: gildong-volume
+      volumes:
+      - name: gildong-volume
+        persistentVolumeClaim:
+          claimName: gildong-pvc-nfs-dynamic
