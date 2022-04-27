@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata: 
+  name: backup-volume
+spec: 
+  capacity: 
+    storage: 1Gi 
+  accessModes: 
+    # ReadWriteOnce 는 Pod <--- 1:1 ---> PV
+    - ReadWriteMany 
+  persistentVolumeReclaimPolicy: Retain 
+  nfs: 
+    path: /podbackup 
+    server: 211.183.3.99 
+    readOnly: false
