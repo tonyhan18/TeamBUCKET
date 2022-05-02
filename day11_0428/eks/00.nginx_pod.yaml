@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod 
+metadata: 
+  name: nginx-blue 
+  labels: 
+    color: blue
+spec: 
+  containers: 
+  - name: nginx-ctn 
+    image: 914658492237.dkr.ecr.ap-northeast-1.amazonaws.com/tonyhan/testweb:blue 
+    ports: 
+    - containerPort: 80

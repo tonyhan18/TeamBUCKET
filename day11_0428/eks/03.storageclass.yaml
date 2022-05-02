@@ -1,0 +1,10 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata: 
+  name: faststorage 
+provisioner: kubernetes.io/aws-ebs 
+parameter: 
+  type: gp2 
+# fsType: ext4
+# zones: ap-northeast-1a
+# volumeBindingMode: WaitForFirstConsumer
