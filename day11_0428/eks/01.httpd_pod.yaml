@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-green
+  labels:
+    app: nginx-green
+spec:
+  containers:
+  - name: nginx-ctn
+    image: 914658492237.dkr.ecr.ap-northeast-1.amazonaws.com/tonyhan/testweb:green
+    ports:
+    - containerPort: 80

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: deploy-ss 
+  namespace: samsung
+spec: 
+  replicas: 3 
+  selector: 
+    matchLabels: 
+      app: my-ss-pods-label 
+  template: 
+    metadata: 
+      name: my-ss-pod 
+      labels: 
+        app: my-ss-pods-label 
+    spec: 
+      containers: 
+      - name: ss 
+        image: nginx 
+        ports: 
+        - containerPort: 80 
+        volumeMounts: 
+        - name: samsung-vol 
+          mountPath: /usr/share/nginx/html/web 
+      volumes: 
+      - name: samsung-vol 
+        configMap: 
+          name: index
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: ss-lb 
+  namespace: samsung 
+spec:
+  ports: 
+  - name: ss-port 
+    targetPort: 80 
+    port: 80
+  selector: 
+    app: my-ss-pods-label 
+  type: LoadBalancer
+  

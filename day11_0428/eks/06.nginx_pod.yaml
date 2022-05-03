@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod 
+metadata: 
+  name: nginx-pod 
+  labels: 
+    color: blue
+spec: 
+  containers: 
+  - name: nginx-ctn 
+    image: 914658492237.dkr.ecr.ap-northeast-1.amazonaws.com/tonyhan/testweb:blue 
+    ports: 
+    - containerPort: 80
+    volumeMounts: 
+    - mountPath: /aws 
+      name: aws-volume 
+  volumes: 
+  - name: aws-volume 
+    persistentVolumeClaim: 
+      claimName: pvc-fst-sc

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod 
+metadata: 
+  name: nfspod 
+spec: 
+  containers: 
+    - name: nfsctn 
+      image: nginx 
+      volumeMounts: 
+        - name: nfsvol 
+          mountPath: /backup
+  volumes: 
+    - name: nfsvol 
+      nfs: 
+        path: /k8s 
+        server: 211.183.3.99

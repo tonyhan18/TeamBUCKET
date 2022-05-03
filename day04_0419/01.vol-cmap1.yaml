@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod 
+metadata:
+  name: vol-pod 
+spec:
+  containers: 
+  - name: vol-ctn 
+    image: nginx 
+    volumeMounts: 
+    - name: vol-cmap1 
+      mountPath: /etc/test1
+  volumes: 
+  - name: vol-cmap1 
+    configMap: 
+      name: cmap1
