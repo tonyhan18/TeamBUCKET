@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-testshop
+  namespace: monitoring
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: www.testshop.co.kr
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-main
+            port:
+              number: 80
+      - path: /blog
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-blog
+            port:
+              number: 80
+      - path: /shop
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-shop
+            port:
+              number: 80

@@ -4,7 +4,7 @@ metadata:
   name: my-nginx-deploy 
   namespace: default  # 생략가능
 spec: 
-  replicas: 3
+  replicas: 2
   # 어떤 포드를 3개 관리할 것인지 선택자가 필요하다
   selector: 
     matchLabels: 
